@@ -1,0 +1,93 @@
+<?xml version="1.0" standalone="yes"?>
+<Interview>
+    <question>
+        <title>Вопрос №3</title>
+        <order>3</order>
+    </question>
+    <answer>
+        <title>Ответ №1</title>
+        <group>rbtn3</group>
+        <type>radio</type>
+    </answer>
+    <answer>
+        <title>Ответ №2</title>
+        <group>rbtn3</group>
+        <type>radio</type>
+    </answer>
+    <answer>
+        <title>Ответ №3</title>
+        <group>rbtn3</group>
+        <type>radio</type>
+    </answer>
+    <answer>
+        <title>Ответ №4</title>
+        <group>rbtn3</group>
+        <type>radio</type>
+    </answer>
+    <question>
+        <title>Вопрос №4</title>
+        <order>4</order>
+    </question>
+    <answer>
+        <title>Ответ №1</title>
+        <group>rbtn4</group>
+        <type>radio</type>
+    </answer>
+    <answer>
+        <title>Ответ №2</title>
+        <group>rbtn4</group>
+        <type>radio</type>
+    </answer>
+    <answer>
+        <title>Ответ №3</title>
+        <group>rbtn4</group>
+        <type>radio</type>
+    </answer>
+    <answer>
+        <title>Ответ №4</title>
+        <group>rbtn4</group>
+        <type>radio</type>
+    </answer>
+    <question>
+        <title>Вопрос №5</title>
+        <order>5</order>
+    </question>
+    <answer>
+        <title>Ваше мнение №1</title>
+        <group>text</group>
+        <type>text</type>
+    </answer>
+    <question>
+        <title>Вопрос №6</title>
+        <order>6</order>
+    </question>
+    <answer>
+        <title>Ответ №1</title>
+        <group>1</group>
+        <type>checkbox</type>
+    </answer>
+    <answer>
+        <title>Ответ №2</title>
+        <group>2</group>
+        <type>checkbox</type>
+    </answer>
+    <answer>
+        <title>Ответ №3</title>
+        <group>3</group>
+        <type>checkbox</type>
+    </answer>
+    <answer>
+        <title>Ответ №4</title>
+        <group>4</group>
+        <type>checkbox</type>
+    </answer>
+    <question>
+        <title>Вопрос №7</title>
+        <order>7</order>
+    </question>
+    <answer>
+        <title>Ваше мнение №2</title>
+        <group>text</group>
+        <type>text</type>
+    </answer>
+</Interview>
