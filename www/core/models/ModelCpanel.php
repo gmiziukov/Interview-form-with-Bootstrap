@@ -49,9 +49,10 @@ class ModelCPanel
         return $idQuestion;
     }
 
-    public function AddAnswer($answerName, $groupAnswer, $typeAnswer, $idQuestion)
+
+    public function AddAnswer($answerName, $groupAnswer, $typeAnswer, $isRequired, $orderView, $idQuestion)
     {
-        $commandTextLastId = "INSERT INTO Answers(AnswerName, GroupAnswer, TypeAnswer) VALUES ('".$answerName."', '".$groupAnswer."', '".$typeAnswer."')";
+        $commandTextLastId = "INSERT INTO Answers(AnswerName, GroupAnswer, TypeAnswer, IsRequired, OrderView) VALUES ('".$answerName."', '".$groupAnswer."', '".$typeAnswer."', '".$isRequired."', '".$orderView."')";
 
         $idAnswer = $this->request->GetLastId($commandTextLastId);
 
@@ -83,7 +84,7 @@ class ModelCPanel
 
     public function GetAnswers($idQuestion)
     {
-        $commandText = "SELECT Answers.IdAnswer, Answers.AnswerName, Answers.GroupAnswer, Answers.TypeAnswer FROM MiddleQA INNER JOIN Answers ON MiddleQA.IdAnswerFK = Answers.IdAnswer WHERE MiddleQA.IdQuestionFK = ".$idQuestion."";
+        $commandText = "SELECT Answers.IdAnswer, Answers.AnswerName, Answers.GroupAnswer, Answers.TypeAnswer, Answers.IsRequired, Answers.OrderView FROM MiddleQA INNER JOIN Answers ON MiddleQA.IdAnswerFK = Answers.IdAnswer WHERE MiddleQA.IdQuestionFK = ".$idQuestion."";
 
         return $this->request->GetData($commandText);
     }
@@ -139,7 +140,7 @@ class ModelCPanel
 
     public function GetHitTxtField($idAnswer)
     {
-        $commandText = "SELECT Hit FROM HitTxtField WHERE IdAnswerFK = ".$idAnswer."";
+        $commandText = "SELECT DISTINCT Hit FROM HitTxtField WHERE IdAnswerFK = ".$idAnswer."";
 
         return $this->request->GetData($commandText);
     }
@@ -165,9 +166,9 @@ class ModelCPanel
         return $this->request->AnyRequest($commandText);
     }
 
-    public function UpdateTableAnswer($idAnswer, $answerName, $groupAnswer, $typeAnswer)
+    public function UpdateTableAnswer($idAnswer, $answerName, $groupAnswer, $typeAnswer, $isRequired, $orderView)
     {
-        $commandText = "UPDATE Answers SET AnswerName='".$answerName."',GroupAnswer='".$groupAnswer."',TypeAnswer='".$typeAnswer."' WHERE IdAnswer = ".$idAnswer."";
+        $commandText = "UPDATE Answers SET AnswerName='".$answerName."',GroupAnswer='".$groupAnswer."',TypeAnswer='".$typeAnswer."', IsRequired='".$isRequired."', OrderView='".$orderView."' WHERE IdAnswer = ".$idAnswer."";
 
         return $this->request->AnyRequest($commandText);
     }

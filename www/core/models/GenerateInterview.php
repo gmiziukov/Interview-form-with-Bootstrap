@@ -34,7 +34,7 @@ class GenerateInterview
 
     public function GetAnswers($idQuestion)
     {
-        $commandText = "SELECT Answers.IdAnswer, Answers.AnswerName, Answers.GroupAnswer, Answers.TypeAnswer FROM MiddleQA INNER JOIN Answers ON MiddleQA.IdAnswerFK = Answers.IdAnswer WHERE MiddleQA.IdQuestionFK = ".$idQuestion."";
+        $commandText = "SELECT Answers.IdAnswer, Answers.AnswerName, Answers.GroupAnswer, Answers.TypeAnswer, Answers.IsRequired FROM MiddleQA INNER JOIN Answers ON MiddleQA.IdAnswerFK = Answers.IdAnswer WHERE MiddleQA.IdQuestionFK = ".$idQuestion."";
 
         return $this->request->GetData($commandText);
     }

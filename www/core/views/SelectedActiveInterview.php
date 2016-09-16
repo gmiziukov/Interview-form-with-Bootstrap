@@ -36,6 +36,8 @@ require_once __DIR__.'/../controls/GetAnswersByIdQuestion.php';
                 $arrayAnswers =  GetAnswers($itemQuestion['IdQuestion']);
                 foreach($arrayAnswers as $itemAnswer)
                 {
+                    $required = ($itemAnswer['IsRequired'] == 1) ? "required" : "";
+
                     ?>
                     <div class="form-group">
                         <?php
@@ -43,7 +45,7 @@ require_once __DIR__.'/../controls/GetAnswersByIdQuestion.php';
                         {
                             ?>
                             <label>
-                                <input type="<?php echo $itemAnswer['TypeAnswer']; ?>" name="<?php echo $itemAnswer['GroupAnswer']; ?>" value="<?php echo $itemAnswer['IdAnswer']; ?>" />
+                                <input type="<?php echo $itemAnswer['TypeAnswer']; ?>" name="<?php echo $itemAnswer['GroupAnswer']; ?>" value="<?php echo $itemAnswer['IdAnswer']; ?>" <?php echo $required; ?> />
                             </label>
                             <?php echo $itemAnswer['AnswerName'];
                         }
@@ -53,7 +55,7 @@ require_once __DIR__.'/../controls/GetAnswersByIdQuestion.php';
                             ?>
                             <br>
                             <label>
-                                <textarea class="form-control" cols="50" rows="5" maxlength="500" name="userTxt[<?php echo $itemAnswer['IdAnswer']; ?>]"></textarea>
+                                <textarea class="form-control" cols="50" rows="5" maxlength="500" name="userTxt[<?php echo $itemAnswer['IdAnswer']; ?>]" <?php echo $required; ?>></textarea>
                             </label>
                             <?php
                         }

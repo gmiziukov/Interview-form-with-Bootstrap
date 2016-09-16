@@ -7,7 +7,9 @@
     <title>Панель администрирования</title>
     <script type="text/javascript" src="../style/bootstrap/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../style/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../style/bootstrap/js/bootstrap-toggle.min.js"></script>
     <link rel="stylesheet" href="../style/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../style/bootstrap/css/bootstrap-toggle.min.css" />
     <link rel="stylesheet" href="../style/style.css" />
 </head>
 <body>
@@ -83,6 +85,14 @@
                 <label for="GroupAnswer" class="control-label">Установите группу для ответа:</label>
                 <input type="text" class="form-control" id="GroupAnswer" name="groupAnswer" maxlength="30" required />
             </div>
+            <div class="form-group">
+                <label for="toggle-one" class="control-label">Сделать поле обязательным для заполнения:</label>
+                <input id="toggle-one" type="checkbox" name="isRequired" />
+            </div>
+            <div class="form-group">
+                <label for="OrderView" class="control-label">Порядок сортировки:</label>
+                <input type="number" class="form-control" id="OrderView" name="orderView" maxlength="30" required />
+            </div>
             <input class="btn btn-primary" type="submit" name="btn" value="Добавить" />
             <input type="hidden" name="view" value="ItemAddNewAnswer" />
             <input type="hidden" name="isAddAnswer" value="true" />
@@ -94,5 +104,10 @@
         <p class="text-muted">© 2016 ФГБОУ ВО "Ростовский государственный университет путей сообщения". Центр мониторинга качества образования.</p>
     </div>
 </div>
+<script type="text/javascript">
+    $(function() {
+        $('#toggle-one').bootstrapToggle();
+    });
+</script>
 </body>
 </html>

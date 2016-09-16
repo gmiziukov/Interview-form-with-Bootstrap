@@ -25,20 +25,36 @@ $questions = $modelCpanel->GetQuestions($idInterview);
     <title>Панель администрирования</title>
     <script type="text/javascript" src="../style/bootstrap/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../style/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../style/bootstrap/js/bootstrap-toggle.min.js"></script>
     <link rel="stylesheet" href="../style/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../style/bootstrap/css/bootstrap-toggle.min.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <script type="text/javascript">
         function GetQuestionValue(key, name, order)
         {
             document.getElementById('IdQuestion').value = key;
             document.getElementById('QuestionName').value = name;
-            document.getElementById('OrderView').value = order;
+            document.getElementById('OrderViewQuestion').value = order;
         }
-        function GetAnswerValue(key, name, group)
+        function GetAnswerValue(key, name, group, requred, order)
         {
+            if(requred == 1)
+            {
+                $(function() {
+                    $('#toggle-one').bootstrapToggle('on')
+                });
+            }
+            else
+            {
+                $(function() {
+                    $('#toggle-one').bootstrapToggle('off')
+                });
+            }
+
             document.getElementById('IdAnswer').value = key;
             document.getElementById('AnswerName').value = name;
             document.getElementById('GroupAnswer').value = group;
+            document.getElementById('OrderViewAnswer').value = order;
         }
     </script>
 </head>
@@ -57,8 +73,8 @@ $questions = $modelCpanel->GetQuestions($idInterview);
                     <input class="form-control" type="text" name="questionName" id="QuestionName" maxlength="250" value="" required />
                 </div>
                 <div class="modal-body">
-                    <label for="OrderView" class="control-label">Порядок:</label>
-                    <input class="form-control" type="text" name="orderView" id="OrderView" value="" required />
+                    <label for="OrderViewQuestion" class="control-label">Порядок сортировки:</label>
+                    <input class="form-control" type="number" name="orderView" id="OrderViewQuestion" value="" required />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
@@ -97,6 +113,14 @@ $questions = $modelCpanel->GetQuestions($idInterview);
                         <option value="checkbox">Множественный выбор</option>
                         <option value="text">Ввод текста</option>
                     </select>
+                </div>
+                <div class="modal-body">
+                    <label for="toggle-one" class="control-label">Сделать поле обязательным для заполнения:</label>
+                    <input id="toggle-one" type="checkbox" name="isRequired" />
+                </div>
+                <div class="modal-body">
+                    <label for="OrderViewAnswer" class="control-label">Порядок сортировки:</label>
+                    <input type="number" class="form-control" id="OrderViewAnswer" name="orderView" maxlength="30" required />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
@@ -178,7 +202,7 @@ $questions = $modelCpanel->GetQuestions($idInterview);
                         {
                             ?>
                             <tr><td width="80%" height="40"><?php echo $itemAnswer['AnswerName']; ?></td>
-                                <td><a href="#" data-toggle="modal" data-target="#myModalTwo" onclick="GetAnswerValue('<?php echo $itemAnswer['IdAnswer']; ?>','<?php echo $itemAnswer['AnswerName']; ?>','<?php echo $itemAnswer['GroupAnswer']; ?>')">Изменить</a></td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModalTwo" onclick="GetAnswerValue('<?php echo $itemAnswer['IdAnswer']; ?>','<?php echo $itemAnswer['AnswerName']; ?>','<?php echo $itemAnswer['GroupAnswer']; ?>','<?php echo $itemAnswer['IsRequired']; ?>','<?php echo $itemAnswer['OrderView']; ?>')">Изменить</a></td>
                                 <td><a href="<?php echo $_SERVER['PHP_SELF']."?idAnswer=".$itemAnswer['IdAnswer']."&view=LinkEditQuestionAnswer&idInterview=".$idInterview."&isDeleteAnswer=true"?>" onclick="return confirm('Вы действительно хотите удалить запись?') ? true : false;">Удалить</a></td></tr>
                             <?php
                         }
@@ -186,7 +210,7 @@ $questions = $modelCpanel->GetQuestions($idInterview);
                         {
                             ?>
                             <tr><td width="80%" height="40"><?php echo $itemAnswer['AnswerName']; ?></td>
-                                <td><a href="#" data-toggle="modal" data-target="#myModalTwo" onclick="GetAnswerValue('<?php echo $itemAnswer['IdAnswer']; ?>','<?php echo $itemAnswer['AnswerName']; ?>','<?php echo $itemAnswer['GroupAnswer']; ?>')">Изменить</a></td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModalTwo" onclick="GetAnswerValue('<?php echo $itemAnswer['IdAnswer']; ?>','<?php echo $itemAnswer['AnswerName']; ?>','<?php echo $itemAnswer['GroupAnswer']; ?>','<?php echo $itemAnswer['IsRequired']; ?>','<?php echo $itemAnswer['OrderView']; ?>')">Изменить</a></td>
                                 <td><a href="<?php echo $_SERVER['PHP_SELF']."?idAnswer=".$itemAnswer['IdAnswer']."&view=LinkEditQuestionAnswer&idInterview=".$idInterview."&isDeleteAnswer=true"?>" onclick="return confirm('Вы действительно хотите удалить запись?') ? true : false;">Удалить</a></td></tr>
                             <?php
                         }
@@ -202,5 +226,10 @@ $questions = $modelCpanel->GetQuestions($idInterview);
         <p class="text-muted">© 2016 ФГБОУ ВО "Ростовский государственный университет путей сообщения". Центр мониторинга качества образования.</p>
     </div>
 </div>
+<script type="text/javascript">
+    $(function() {
+        $('#toggle-one').bootstrapToggle();
+    });
+</script>
 </body>
 </html>

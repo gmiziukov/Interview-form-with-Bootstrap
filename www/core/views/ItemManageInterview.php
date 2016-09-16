@@ -17,7 +17,7 @@
     <script type="text/javascript">
         function GetValue(id, name, to, from, active)
         {
-            if(active==1)
+            if(active == 1)
             {
                 $(function() {
                     $('#toggle-one').bootstrapToggle('on')

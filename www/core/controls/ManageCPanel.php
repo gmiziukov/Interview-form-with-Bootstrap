@@ -46,11 +46,11 @@ class ManageCPanel
         }
     }
 
-    public function AddNewAnswer($answerName, $groupAnswer, $typeAnswer, $idQuestion)
+    public function AddNewAnswer($answerName, $groupAnswer, $typeAnswer, $isRequired, $orderView, $idQuestion)
     {
         if((isset($answerName) && !empty($answerName)) && (isset($groupAnswer) && !empty($groupAnswer)) && (isset($typeAnswer) && !empty($typeAnswer)) && (isset($idQuestion) && !empty($idQuestion)))
         {
-            return $this->model->AddAnswer(trim($answerName), trim($groupAnswer), trim($typeAnswer), trim($idQuestion));
+            return $this->model->AddAnswer(trim($answerName), trim($groupAnswer), trim($typeAnswer), trim($isRequired), trim($orderView), trim($idQuestion));
         }
     }
 
@@ -68,12 +68,12 @@ class ManageCPanel
                 {
                     case 'question':
 
-                        $id = $this->model->AddQuestion($value->title, $value->order, $idInterview);
+                        $id = $this->model->AddQuestion(trim($value->title), trim($value->order), trim($idInterview));
 
                         break;
                     case 'answer':
 
-                        $this->model->AddAnswer($value->title, $value->group, $value->type, $id);
+                        $this->model->AddAnswer(trim($value->title), trim($value->group), trim($value->type), trim($value->required), trim($value->order), $id);
 
                         break;
                 }
@@ -126,11 +126,11 @@ class ManageCPanel
         }
     }
 
-    public function UpdateAnswer($idAnswer, $answerName, $groupAnswer, $typeAnswer)
+    public function UpdateAnswer($idAnswer, $answerName, $groupAnswer, $typeAnswer, $isRequired, $orderView)
     {
         if((isset($idAnswer) && !empty($idAnswer)) && (isset($answerName) && !empty($answerName)) && (isset($groupAnswer) && !empty($groupAnswer)) && (isset($typeAnswer) && !empty($typeAnswer)))
         {
-            return $this->model->UpdateTableAnswer($idAnswer, $answerName, $groupAnswer, $typeAnswer);
+            return $this->model->UpdateTableAnswer($idAnswer, $answerName, $groupAnswer, $typeAnswer, $isRequired, $orderView);
         }
         else
         {

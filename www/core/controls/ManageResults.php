@@ -33,7 +33,7 @@ if(isset($_GET['idInterview']) && !empty($_GET['idInterview']))
                     $procent = 0;
                 }
 
-                echo "<div>".$itemAnswer['AnswerName']." (".$procent." %)</div>";
+                echo "<div>".$itemAnswer['AnswerName']." | ".$countHit[0]['countHit']." чел. (".$procent." %)</div>";
                 echo "<div>
                             <div class='progress'>
                                 <div class='progress-bar progress-bar-info progress-bar-striped' role='progressbar' aria-valuenow='20' aria-valuemin='0' aria-valuemax='100' style='width: ".$procent."%'></div>

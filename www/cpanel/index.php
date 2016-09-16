@@ -58,7 +58,16 @@ if((isset($_POST['view']) && !empty($_POST['view'])) && $_POST['view'] == "ItemA
 
 if((isset($_POST['view']) && !empty($_POST['view'])) && $_POST['view'] == "ItemAddNewAnswer" && $_POST['isAddAnswer'] == true)
 {
-    $result = $manageCPanel->AddNewAnswer($_POST['answerName'], $_POST['groupAnswer'], $_POST['typeAnswer'], $_POST['idQuestion']);
+    if(isset($_POST['isRequired']) && !empty($_POST['isRequired']))
+    {
+        $isRequired = 1;
+    }
+    else
+    {
+        $isRequired = 0;
+    }
+
+    $result = $manageCPanel->AddNewAnswer($_POST['answerName'], $_POST['groupAnswer'], $_POST['typeAnswer'], $isRequired, $_POST['orderView'], $_POST['idQuestion']);
 
     if($result)
     {
@@ -144,7 +153,16 @@ if((isset($_POST['view']) && !empty($_POST['view'])) && $_POST['view'] == "LinkE
 
 if((isset($_POST['view']) && !empty($_POST['view'])) && $_POST['view'] == "LinkEditQuestionAnswer" && $_POST['isUpdateAnswer'] == true)
 {
-    $result = $manageCPanel->UpdateAnswer($_POST['idAnswer'], $_POST['answerName'], $_POST['groupAnswer'], $_POST['typeAnswer']);
+    if(isset($_POST['isRequired']) && !empty($_POST['isRequired']))
+    {
+        $isRequired = 1;
+    }
+    else
+    {
+        $isRequired = 0;
+    }
+
+    $result = $manageCPanel->UpdateAnswer($_POST['idAnswer'], $_POST['answerName'], $_POST['groupAnswer'], $_POST['typeAnswer'], $isRequired, $_POST['orderView']);
 
     if($result)
     {
